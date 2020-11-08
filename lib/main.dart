@@ -8,8 +8,14 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  var questionIndex = 0; // inferred as int, called property
+  
   void answerQuestion() {
-    print('Answer chosen!');
+    questionIndex = questionIndex + 1;
+    if (questionIndex > 1) {
+      questionIndex = questionIndex - 1;
+    }
+    print(questionIndex);
   }
 
   @override // decorator
@@ -25,18 +31,21 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('The question!'),
+            Text(questions[questionIndex]),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: null,
+              onPressed: () => print('Answer 2 chosen!'),
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: null,
+              onPressed: () {
+                // ...
+                print("Answer 3 chosen!");
+              },
             ),
           ],
         ),
